@@ -151,6 +151,15 @@ both converted to the same keyword `:database-url`.
 code you produce with `lein uberjar`, you will want to set your 
 configuration values via shell environment and/or system properties.
 
+### GraalVM native-image support
+
+When building a GraalVM native-image, environ's `env` value gets generated at
+build time instead of runtime. This is likely not what you want.
+
+Instead you can use `environ.core/runtime-env` to access the runtime
+environment. It is a delay (which allows it to cache its value like `env` does)
+so you should deref it: `@environ.core/runtime-env`.
+
 ## License
 
 Copyright © 2020 James Reeves
